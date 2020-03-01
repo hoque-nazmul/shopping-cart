@@ -17,16 +17,17 @@
             <div class="col-md-12 col-lg-10 mx-auto">
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item">
+                     <div class="col-md-5 center-item">
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
                      </div>
 
-                     <div class="col-md-5 center-item">
+                     <div class="col-md-7 center-item">
+                        <h5>$ <span class="price">12</span></h5>
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default"><i id="minusQtyOne" class="fas fa-minus minusQty"></i></button>
+                           <input type="text" id="qtyOne" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i id="plusQtyOne" class="fas fa-plus"></i></button>
                         </div>
                         <h5>$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -36,15 +37,16 @@
 
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item mx-auto">
+                     <div class="col-md-5 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
                         <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
-                     <div class="col-md-5 center-item">
+                     <div class="col-md-7 center-item">
+                        <h5>$ <span class="price">59</span></h5>
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default"><i id="minusQtyTwo" class="fas fa-minus"></i></button>
+                           <input type="text" id="qtyTwo" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i id="plusQtyTwo" class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$59</h5>
@@ -76,6 +78,55 @@
          </div>
       </div>
    </section>
+
+   <script>
+      // plusQty Button Handler
+      const plusQtyOne = document.getElementById("plusQtyOne");
+      addQty("qtyOne", plusQtyOne)
+
+      const plusQtyTwo = document.getElementById("plusQtyTwo");
+      addQty("qtyTwo", plusQtyTwo);
+
+      // minusQty Button Handler
+      const minusQtyOne = document.getElementById("minusQtyOne");
+      minusQty("qtyOne", minusQtyOne)
+
+      const minusQtyTwo = document.getElementById("minusQtyTwo");
+      minusQty("qtyTwo", minusQtyTwo)
+
+      // for (var i = 0; i < quantities.length; i++) {
+      //    quantities[i].addEventListener('click', function() {
+      //       var quantity = document.getElementById("qtyOne").value;
+      //       var quantityNumber = parseFloat(quantity);
+      //       var quantityAmount = quantityNumber + 1;
+      //       document.getElementById("qtyOne").value = quantityAmount;
+      //       addQty("qtyOne");
+      //       addQty("qtyTwo");
+      //    })
+      // }
+
+      function addQty(id, qtyItem) {
+         qtyItem.addEventListener("click", function() {
+            var quantity = document.getElementById(id).value;
+            var quantityNumber = parseFloat(quantity);
+            var quantityAmount = quantityNumber + 1;
+            document.getElementById(id).value = quantityAmount;
+         })
+      }
+
+      function minusQty(id, qtyItem) {
+         qtyItem.addEventListener("click", function() {
+            var quantity = document.getElementById(id).value;
+            var quantityNumber = parseFloat(quantity);
+            if(quantityNumber > 1) {
+               var quantityAmount = quantityNumber - 1;
+               document.getElementById(id).value = quantityAmount;
+            }
+         })
+      }
+
+
+   </script>
 </body>
 
 </html>
