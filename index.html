@@ -82,41 +82,13 @@
    <script>
       // plusQty Button Handler
       const plusQtyOne = document.getElementById("plusQtyOne");
-
       plusQtyOne.addEventListener("click", function() {
-         var quantity = document.getElementById("qtyOne").value;
-         var quantityNumber = parseFloat(quantity);
-         var quantityAmount = quantityNumber + 1;
-         document.getElementById("qtyOne").value = quantityAmount;
-         const productOnePrice = getProductPrice("priceOne");
-         const totalOne = productOnePrice * quantityAmount;
-         document.getElementById("totalOne").innerText = totalOne;
-         
-         const subtotalAmount = getSubtotal()
-         document.getElementById("subtotal").innerText = subtotalAmount;
-         const tax = Math.round((subtotalAmount/100) * 5);
-         document.getElementById("tax").innerText = tax;
-         const total = subtotalAmount - tax;
-         document.getElementById("total").innerText = total;
+         plusBtnHandler("qtyOne", "priceOne", "totalOne");
       })
-
 
       const plusQtyTwo = document.getElementById("plusQtyTwo");
       plusQtyTwo.addEventListener("click", function() {
-         var quantity = document.getElementById("qtyTwo").value;
-         var quantityNumber = parseFloat(quantity);
-         var quantityAmount = quantityNumber + 1;
-         document.getElementById("qtyTwo").value = quantityAmount;
-         const productTwoPrice = getProductPrice("priceTwo");
-         const totalTwo = productTwoPrice * quantityAmount;
-         document.getElementById("totalTwo").innerText = totalTwo;
-
-         const subtotalAmount = getSubtotal()
-         document.getElementById("subtotal").innerText = subtotalAmount;
-         const tax = Math.round((subtotalAmount/100) * 5);
-         document.getElementById("tax").innerText = tax;
-         const total = subtotalAmount - tax;
-         document.getElementById("total").innerText = total;
+         plusBtnHandler("qtyTwo", "priceTwo", "totalTwo");
       })
       
 
@@ -169,6 +141,24 @@
          document.getElementById("total").innerText = total;
 
 
+
+      function plusBtnHandler(qtyId, priceId, totalId) {
+         var quantity = document.getElementById(qtyId).value;
+         var quantityNumber = parseFloat(quantity);
+         var quantityAmount = quantityNumber + 1;
+         document.getElementById(qtyId).value = quantityAmount;
+         const productOnePrice = getProductPrice(priceId);
+         const totalOne = productOnePrice * quantityAmount;
+         document.getElementById(totalId).innerText = totalOne;
+         
+         const subtotalAmount = getSubtotal()
+         document.getElementById("subtotal").innerText = subtotalAmount;
+         const tax = Math.round((subtotalAmount/100) * 5);
+         document.getElementById("tax").innerText = tax;
+         const total = subtotalAmount - tax;
+         document.getElementById("total").innerText = total;
+      }
+
       function getProductPrice(id) {
          const price = document.getElementById(id).innerText;
          const priceNumber = parseFloat(price);
@@ -182,27 +172,27 @@
          return subtotal;
       }
 
+
       
-      /* ============== Think More About That ============= */
+      /* ============== Should be thought More About That ============= */
 
-      // function addQty(id, qtyItem) {
-      //    qtyItem.addEventListener("click", function() {
-      //       var quantity = document.getElementById(id).value;
-      //       var quantityNumber = parseFloat(quantity);
-      //       var quantityAmount = quantityNumber + 1;
-      //       document.getElementById(id).value = quantityAmount;
-      //    })
-      // }
+      // function minusBtnHandler (qtyId, priceId, totalId) {
+      //    var quantity = document.getElementById(qtyId).value;
+      //    var quantityNumber = parseFloat(quantity);
+      //    if(quantityNumber > 1) {
+      //       var quantityAmount = quantityNumber - 1;
+      //       document.getElementById(qtyId).value = quantityAmount;
+      //       const productOnePrice = getProductPrice(priceId);
+      //       const totalOne = productOnePrice * quantityAmount;
+      //       document.getElementById(totalId).innerText = totalOne;
 
-      // function minusQty(id, qtyItem) {
-      //    qtyItem.addEventListener("click", function() {
-      //       var quantity = document.getElementById(id).value;
-      //       var quantityNumber = parseFloat(quantity);
-      //       if(quantityNumber > 1) {
-      //          var quantityAmount = quantityNumber - 1;
-      //          document.getElementById(id).value = quantityAmount;
-      //       }
-      //    })
+      //       const subtotalAmount = getSubtotal()
+      //       document.getElementById(totalId).innerText = subtotalAmount;
+      //       const tax = Math.round((subtotalAmount/100) * 5);
+      //       document.getElementById("tax").innerText = tax;
+      //       const total = subtotalAmount - tax;
+      //       document.getElementById("total").innerText = total;
+      //    }
       // }
 
       // var prices =  document.getElementsByClassName("price");
