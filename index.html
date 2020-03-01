@@ -23,13 +23,13 @@
                      </div>
 
                      <div class="col-md-7 center-item">
-                        <h5>$ <span id="priceOne">12</span></h5>
+                        <h5>$ <span id="priceOne">1210</span></h5>
                         <div class="input-group number-spinner">
                            <button class="btn btn-default"><i id="minusQtyOne" class="fas fa-minus minusQty"></i></button>
                            <input type="text" id="qtyOne" class="form-control text-center qty" value="1">
                            <button class="btn btn-default"><i id="plusQtyOne" class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="totalOne">12</span></h5>
+                        <h5>$ <span id="totalOne">1210</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -42,14 +42,14 @@
                         <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
                      <div class="col-md-7 center-item">
-                        <h5>$ <span id="priceTwo">59</span></h5>
+                        <h5>$ <span id="priceTwo">1560</span></h5>
                         <div class="input-group number-spinner">
                            <button class="btn btn-default"><i id="minusQtyTwo" class="fas fa-minus"></i></button>
                            <input type="text" id="qtyTwo" class="form-control text-center qty" value="1">
                            <button class="btn btn-default"><i id="plusQtyTwo" class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="totalTwo">59</span></h5>
+                        <h5>$ <span id="totalTwo">1560</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -59,11 +59,15 @@
                   <div class="row">
 
                      <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax: </h5>
                         <h5>Total: </h5>
                      </div>
 
                      <div class="col-md-4 status">
                         <h5>$ <span id="subtotal">00</span></h5>
+                        <h5>$ <span id="tax">00</span></h5>
+                        <h5>$ <span id="total">00</span></h5>
                      </div>
                   </div>
                </div>
@@ -88,7 +92,12 @@
          const totalOne = productOnePrice * quantityAmount;
          document.getElementById("totalOne").innerText = totalOne;
          
-         var subtotalAmount = setSubtotal();
+         const subtotalAmount = getSubtotal()
+         document.getElementById("subtotal").innerText = subtotalAmount;
+         const tax = Math.round((subtotalAmount/100) * 5);
+         document.getElementById("tax").innerText = tax;
+         const total = subtotalAmount - tax;
+         document.getElementById("total").innerText = total;
       })
 
 
@@ -102,7 +111,12 @@
          const totalTwo = productTwoPrice * quantityAmount;
          document.getElementById("totalTwo").innerText = totalTwo;
 
-         setSubtotal()
+         const subtotalAmount = getSubtotal()
+         document.getElementById("subtotal").innerText = subtotalAmount;
+         const tax = Math.round((subtotalAmount/100) * 5);
+         document.getElementById("tax").innerText = tax;
+         const total = subtotalAmount - tax;
+         document.getElementById("total").innerText = total;
       })
       
 
@@ -118,7 +132,12 @@
                const totalOne = productOnePrice * quantityAmount;
                document.getElementById("totalOne").innerText = totalOne;
 
-               setSubtotal()
+               const subtotalAmount = getSubtotal()
+               document.getElementById("subtotal").innerText = subtotalAmount;
+               const tax = Math.round((subtotalAmount/100) * 5);
+               document.getElementById("tax").innerText = tax;
+               const total = subtotalAmount - tax;
+               document.getElementById("total").innerText = total;
             }
          })
 
@@ -133,9 +152,21 @@
                const totalTwo = productTwoPrice * quantityAmount;
                document.getElementById("totalTwo").innerText = totalTwo;
 
-               setSubtotal()
+               const subtotalAmount = getSubtotal()
+               document.getElementById("subtotal").innerText = subtotalAmount;
+               const tax = Math.round((subtotalAmount/100) * 5);
+               document.getElementById("tax").innerText = tax;
+               const total = subtotalAmount - tax;
+               document.getElementById("total").innerText = total;
             }
          })
+
+         const subtotalAmount = getSubtotal()
+         document.getElementById("subtotal").innerText = subtotalAmount;
+         const tax = Math.round((subtotalAmount/100) * 5);
+         document.getElementById("tax").innerText = tax;
+         const total = subtotalAmount - tax;
+         document.getElementById("total").innerText = total;
 
 
       function getProductPrice(id) {
@@ -144,14 +175,15 @@
          return priceNumber
       }
 
-      function setSubtotal() {
+      function getSubtotal() {
          const totalAmountOne = getProductPrice("totalOne");
          const totalAmountTwo = getProductPrice("totalTwo");
          const subtotal = totalAmountOne + totalAmountTwo;
-         document.getElementById("subtotal").innerText = subtotal;
+         return subtotal;
       }
 
       
+      /* ============== Think More About That ============= */
 
       // function addQty(id, qtyItem) {
       //    qtyItem.addEventListener("click", function() {
@@ -173,7 +205,6 @@
       //    })
       // }
 
-      /* ============== Think More About That ============= */
       // var prices =  document.getElementsByClassName("price");
       // for(var i = 0; i < prices.length; i++) {
       //    var price = prices[i];
